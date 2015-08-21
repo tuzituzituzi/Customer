@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>    
+<resources>    
+    <string-array name="city">    
+        <item>全城</item>    
+        <item>武昌区</item>    
+        <item>汉口</item>    
+        <item>汉阳</item>    
+        <item>洪山区</item> 
+        <item>青山区</item>  
+        <item>硚口</item>     
+    </string-array>    
+</resources>    

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>    
+<resources>    
+    <string-array name="sort">    
+        <item>默认排序</item>    
+        <item>价格从低到高</item>    
+        <item>价格从高到低</item>    
+        <item>离我最近</item>    
+        <item>评价最高</item>    
+    </string-array>    
+</resources>    

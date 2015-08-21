@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">用户端</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_place">PlaceActivity</string>
+    <string name="title_activity_mall">MallActivity</string>
+    <string name="title_activity_findings">FindingsActivity</string>
+    <string name="title_activity_mine">MineActivity</string>
+    <string name="title_activity_store_detail">商品详情</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_wave">WaveActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_market">MarketActivity</string>
+    <string name="title_activity_coupon">CouponActivity</string>
+    <string name="title_activity_square_detail">SquareDetailActivity</string>
+    <string name="title_activity_store_list">StoreListActivity</string>
+    <string name="pull_to_refresh_pull_label">下拉刷新</string>
+    <string name="pull_to_refresh_release_label">释放刷新</string>
+    <string name="pull_to_refresh_refreshing_label">加载</string>
+    <string name="pull_to_refresh_tap_label">点击刷新</string>
+    <string name="title_activity_ads_webview">广告</string>
+    <string name="title_activity_focus_list">FocusListActivity</string>
+    <string name="title_activity_splash">Splash</string>
+    <string name="title_activity_shop_detail">ShopDetailActivity</string>
+    <string name="copyright">Copyright © 2015年 wushuu. All rights reserved.</string>
+    <string name="poptitle">未知</string>
+    <string name="popinputps">输入密码</string>
+    <string name="popconnection">连接</string>
+    <string name="popcancel">取消</string>
+
+</resources>

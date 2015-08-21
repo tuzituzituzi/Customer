@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginTop="0dp"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:background="#dbdbdb" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <ImageView
+            android:id="@+id/store_img"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/a" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/store_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="绿茶餐厅"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/store_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="仅售88.8元！最高价值127元的浪漫双人餐，提供免费WiFi,仅售88.8元！最高价值127元的浪漫双人餐，提供免费WiFi"
+                android:textColor="@color/grey"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

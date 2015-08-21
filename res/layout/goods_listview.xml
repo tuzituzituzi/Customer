@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whut.util.PullToRefreshListView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Goods_ListView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:divider="#606569"
+    android:dividerHeight="0dp"
+    android:listSelector="#00000000" >
+</com.whut.util.PullToRefreshListView >

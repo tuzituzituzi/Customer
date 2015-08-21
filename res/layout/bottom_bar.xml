@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ly_main_tab_bottom"
+    android:layout_width="fill_parent"
+    android:layout_height="40dp"
+    android:layout_alignParentBottom="true"
+    android:background="@color/white" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:id="@+id/market_layout"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:descendantFocusability="beforeDescendants"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/place_img"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/sel_place" />
+
+            <TextView
+                android:id="@+id/place_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="商城" 
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mall_layout"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:descendantFocusability="beforeDescendants"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/mall_img"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/unsel_mall" />
+
+            <TextView
+                android:id="@+id/mall_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="广场" 
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/findings_layout"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:descendantFocusability="beforeDescendants"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/findings_img"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/unsel_findings" />
+
+            <TextView
+                android:id="@+id/findings_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发现"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mine_layout"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:descendantFocusability="beforeDescendants"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/mine_img"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/unsel_mine" />
+
+            <TextView
+                android:id="@+id/mine_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的" 
+                android:textSize="12sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

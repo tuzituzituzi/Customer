@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/titlebar">
+
+    <TextView
+        android:id="@+id/squre_leftbut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:text="重庆"
+        android:textSize="16sp"
+        android:textColor="@color/title" />
+
+    <TextView
+        android:id="@+id/mall_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="商城"
+        style="@style/titlebar_text" />
+
+</RelativeLayout>

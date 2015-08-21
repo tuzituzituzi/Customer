@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>    
+<resources>    
+    <string-array name="all_plantes">    
+        <item>全部</item>    
+        <item>美食</item>    
+        <item>娱乐</item>    
+        <item>电影</item>    
+        <item>KTV</item>    
+    </string-array>    
+</resources>    
