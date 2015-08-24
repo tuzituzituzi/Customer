@@ -68,6 +68,7 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		dynamic = (DynamicModel) getIntent().getSerializableExtra("dynamic");
 		list = new ArrayList();
+		
 		list.add("很好，下次还会来");
 		list.add("好评！！！");
 		list.add("GOOD！！");

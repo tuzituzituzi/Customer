@@ -48,7 +48,7 @@ public class SelectImage {
 //		if(!imageFile.getParentFile().exists()){
 //			imageFile.getParentFile().mkdir();
 //		}
-		imageFile =  new File(Environment.getExternalStorageDirectory(),"outputImage.jpg");
+		imageFile =  new File(Environment.getExternalStorageDirectory(),String.valueOf(System.currentTimeMillis())+".jpg");
 		try {
 			if(imageFile.exists()){
 				imageFile.delete();
@@ -179,11 +179,11 @@ public class SelectImage {
 //		intent.setDataAndType(uri, "image/*");
 		intent.putExtra("crop", "true");
 		//裁剪框比例，1:1
-		intent.putExtra("aspectX", 3.26);
+		intent.putExtra("aspectX", 3.46);
 		intent.putExtra("aspectY", 2.4);
 		//裁剪后输出图片尺寸大小
-		intent.putExtra("outputX", 346);
-		intent.putExtra("outputY", 240);
+		intent.putExtra("outputX", 346*2);
+		intent.putExtra("outputY", 240*2);
 		intent.putExtra("outputFormat", "PNG");//图片格式
 		intent.putExtra("noFaceDetection", true);//取消人脸识别
 //		intent.putExtra("scale", true);

@@ -193,6 +193,7 @@ public class PlaceActivity extends Activity implements OnClickListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			return result;
 		}
 

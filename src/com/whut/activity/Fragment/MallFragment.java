@@ -179,6 +179,7 @@ public class MallFragment extends Fragment implements OnClickListener {
 
 	private void initData() {
 		// TODO Auto-generated method stub
+		
 		items = new ArrayList<DynamicModel>();
 		DynamicModel model;
 		selectImage = new SelectImage(getActivity());
@@ -267,81 +268,7 @@ public class MallFragment extends Fragment implements OnClickListener {
 
 	private static final int TAKE_PICTURE = 0x000000;
 
-//	class PostStorePopupWindow extends PopupWindow {
-//		public PostStorePopupWindow(Context context, View parent) {
-//			final View view = View.inflate(context,
-//					R.layout.post_store_popupwindow_item, null);
-//			view.findViewById(R.id.post_store_popupwindow_blank_view)
-//					.setOnClickListener(new OnClickListener() {
-//						@Override
-//						public void onClick(View v) {
-//							// TODO Auto-generated method stub
-//							if (isShowing()) {
-//								dismiss();
-//							}
-//						}
-//					});
-//			view.findViewById(R.id.item_popupwindows_camera)
-//					.setOnClickListener(new OnClickListener() {
-//						@Override
-//						public void onClick(View v) {
-//							// TODO Auto-generated method stub
-//							photo();
-//							dismiss();
-//						}
-//
-//						private void photo() {
-//							// TODO Auto-generated method stub
-//							Intent openCameraIntent = new Intent(
-//									MediaStore.ACTION_IMAGE_CAPTURE);
-//							File file = new File(FileUtils.SDPATH + "/", String
-//									.valueOf(System.currentTimeMillis())
-//									+ ".JPEG");
-//							if (!file.exists()) {
-//								File vDirPath = file.getParentFile(); // new
-//																		// File(vFile.getParent());
-//								vDirPath.mkdirs();
-//							}
-//							path = file.getPath();
-//							Uri imageUri = Uri.fromFile(file);
-//							openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-//									imageUri);
-//							startActivityForResult(openCameraIntent,
-//									TAKE_PICTURE);
-//						}
-//					});
-//			
-//			view.findViewById(R.id.item_popupwindows_photo).setOnClickListener(new OnClickListener() {
-//				
-//				@Override
-//				public void onClick(View v) {
-//					// TODO Auto-generated method stub
-//					
-//				}
-//			});
-//			
-//			view.findViewById(R.id.item_popupwindows_cancel).setOnClickListener(new OnClickListener() {
-//				
-//				@Override
-//				public void onClick(View v) {
-//					// TODO Auto-generated method stub
-//					dismiss();
-//				}
-//			});
-//			view.startAnimation(AnimationUtils.loadAnimation(context,
-//					R.anim.push_bottom_in_2));
-//			setWidth(LayoutParams.FILL_PARENT);
-//			setHeight(LayoutParams.FILL_PARENT);
-//			setBackgroundDrawable(new BitmapDrawable());
-//			setOutsideTouchable(true);
-//			setFocusable(true);
-//			setContentView(view);
-//			showAtLocation(parent, Gravity.TOP, 0, 0);
-//			update();
-//
-//		}
-//
-//	}
+
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -553,6 +480,80 @@ public class MallFragment extends Fragment implements OnClickListener {
 	}
 	
 
-
+//	class PostStorePopupWindow extends PopupWindow {
+//	public PostStorePopupWindow(Context context, View parent) {
+//		final View view = View.inflate(context,
+//				R.layout.post_store_popupwindow_item, null);
+//		view.findViewById(R.id.post_store_popupwindow_blank_view)
+//				.setOnClickListener(new OnClickListener() {
+//					@Override
+//					public void onClick(View v) {
+//						// TODO Auto-generated method stub
+//						if (isShowing()) {
+//							dismiss();
+//						}
+//					}
+//				});
+//		view.findViewById(R.id.item_popupwindows_camera)
+//				.setOnClickListener(new OnClickListener() {
+//					@Override
+//					public void onClick(View v) {
+//						// TODO Auto-generated method stub
+//						photo();
+//						dismiss();
+//					}
+//
+//					private void photo() {
+//						// TODO Auto-generated method stub
+//						Intent openCameraIntent = new Intent(
+//								MediaStore.ACTION_IMAGE_CAPTURE);
+//						File file = new File(FileUtils.SDPATH + "/", String
+//								.valueOf(System.currentTimeMillis())
+//								+ ".JPEG");
+//						if (!file.exists()) {
+//							File vDirPath = file.getParentFile(); // new
+//																	// File(vFile.getParent());
+//							vDirPath.mkdirs();
+//						}
+//						path = file.getPath();
+//						Uri imageUri = Uri.fromFile(file);
+//						openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+//								imageUri);
+//						startActivityForResult(openCameraIntent,
+//								TAKE_PICTURE);
+//					}
+//				});
+//		
+//		view.findViewById(R.id.item_popupwindows_photo).setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		});
+//		
+//		view.findViewById(R.id.item_popupwindows_cancel).setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				dismiss();
+//			}
+//		});
+//		view.startAnimation(AnimationUtils.loadAnimation(context,
+//				R.anim.push_bottom_in_2));
+//		setWidth(LayoutParams.FILL_PARENT);
+//		setHeight(LayoutParams.FILL_PARENT);
+//		setBackgroundDrawable(new BitmapDrawable());
+//		setOutsideTouchable(true);
+//		setFocusable(true);
+//		setContentView(view);
+//		showAtLocation(parent, Gravity.TOP, 0, 0);
+//		update();
+//
+//	}
+//
+//}
 
 }

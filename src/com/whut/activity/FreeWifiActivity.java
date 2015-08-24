@@ -60,10 +60,6 @@ public class FreeWifiActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_freewifi);
 
 		wifiAdmin = new WifiAdmin(FreeWifiActivity.this);
-//		wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-//		wifiManager.startScan();
-//		wifiList = wifiManager.getScanResults();
-//		Log.i(TAG, "wifiList.size() = "+ wifiList.size());
 		
 		initView();
 		RegisterWifiRecever();
@@ -72,7 +68,6 @@ public class FreeWifiActivity extends Activity implements OnClickListener{
 
 	private void pXspy() {
 		wifiAdmin.getWifiList();
-//		wifiAdmin.mWifiList = wifiList;
 		if (wifiAdmin.mWifiList != null) {
 			System.out.println("mWifiList.size()"+ wifiAdmin.mWifiList.size());
 			adapter = new wifiAdapeter();
