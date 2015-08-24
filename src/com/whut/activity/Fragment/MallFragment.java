@@ -368,6 +368,7 @@ public class MallFragment extends Fragment implements OnClickListener {
 				commentmodel.setDesc(comment);
 				commentmodel.setPhotoUrl(photoUrl);
 				items.add(0,commentmodel);
+				listAdapter.notifyDataSetChanged();
 			}
 				
 			break;
@@ -456,14 +457,16 @@ public class MallFragment extends Fragment implements OnClickListener {
 				holder = (HolderView) convertView.getTag();
 			}
 			/*
-			 * String url = items.get(position).getPhotoUrl(); if (url != null)
+			 * String url = items.get(position).getPhotoUrl(); 
+			 * if (url != null)
 			 * { Bitmap bit = BitmapFactory.decodeFile(path);
 			 * holder.photo.setImageBitmap(bit);
 			 * holder.photo.setScaleType(ScaleType.CENTER); }
 			 */
 			System.out.println("items.get(position).getPhotoUrl() = "+items.get(position).getPhotoUrl());
 			if(items.get(position).getPhotoUrl().contains("storage")){
-				holder.image.setImageBitmap(temp);
+				Bitmap bit = BitmapFactory.decodeFile(items.get(position).getPhotoUrl());
+				holder.image.setImageBitmap(bit);
 				System.out.println("temp.toString() = " +temp.toString());
 			}else{
 				holder.image.setImageResource(Integer.parseInt(items.get(position).getPhotoUrl()));

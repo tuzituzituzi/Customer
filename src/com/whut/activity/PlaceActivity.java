@@ -90,8 +90,7 @@ public class PlaceActivity extends Activity implements OnClickListener {
 		if (listAdapter == null)
 			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		listview.setAdapter(listAdapter);
-		enterGoodsDetail(
-				);
+		enterGoodsDetail();
 		inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		InitViewPager();

@@ -2,34 +2,56 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
+
     <include layout="@layout/add_comment_title" />
 
     <RelativeLayout
+        android:id="@+id/add_comment_imgLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="250dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" 
+        android:background="@drawable/comment_frame">
 
-        <RelativeLayout
-            android:id="@+id/add_comment_imgLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="300dp"
-            android:layout_centerHorizontal="true" >
-
-            <ImageView
-                android:id="@+id/add_comment_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:minHeight="240dp"
-                android:src="@drawable/ic_launcher" />
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/add_comment_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:scaleType="center"
+            android:src="@drawable/comment_img" />
     </RelativeLayout>
 
+    <ScrollView
+        android:id="@+id/ScrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" 
+        android:background="@drawable/comment_frame">
+
+        <TableRow
+            android:id="@+id/TableRowContent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/make_comment"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:textSize="18sp" 
+                android:padding="5dp"
+                android:hint="请输入评论内容">
+            </EditText>
+        </TableRow>
+    </ScrollView>
+
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
@@ -61,16 +83,12 @@
             android:textColor="@color/gray" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/make_comment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:hint="评价一下吧~~~" />
-    <Button 
+
+
+    <Button
         android:id="@+id/submit_comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="提交"/>
+        android:text="提交" />
 
 </LinearLayout>

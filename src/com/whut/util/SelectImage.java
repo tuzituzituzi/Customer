@@ -182,8 +182,8 @@ public class SelectImage {
 //		intent.putExtra("aspectX", 1);
 //		intent.putExtra("aspectY", 1);
 		//裁剪后输出图片尺寸大小
-		intent.putExtra("outputX", 346);
-		intent.putExtra("outputY", 240);
+		intent.putExtra("outputX", 346*3);
+		intent.putExtra("outputY", 240*3);
 		intent.putExtra("outputFormat", "PNG");//图片格式
 		intent.putExtra("noFaceDetection", true);//取消人脸识别
 //		intent.putExtra("scale", true);
