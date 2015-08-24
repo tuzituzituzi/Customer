@@ -59,7 +59,7 @@ public class AddCommentActivity extends Activity implements OnClickListener{
 				intent.putExtra("makeCommentText", makeCommentString);
 				intent.putExtra("commentPath", path);
 				System.out.println("path ="+path);
-				intent.putExtra("commentBitmap", temp);
+				//intent.putExtra("commentBitmap", temp);
 				setResult(RESULT_OK, intent);
 				finish();
 			}

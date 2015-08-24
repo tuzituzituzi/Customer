@@ -10,12 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" 
-        android:background="@drawable/comment_frame">
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/comment_frame" >
 
         <ImageView
             android:id="@+id/add_comment_image"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_centerInParent="true"
             android:scaleType="center"
@@ -27,8 +28,8 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" 
-        android:background="@drawable/comment_frame">
+        android:layout_marginRight="20dp"
+        android:background="@drawable/comment_frame" >
 
         <TableRow
             android:id="@+id/TableRowContent"
@@ -40,9 +41,10 @@
                 android:id="@+id/make_comment"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:textSize="18sp" 
+                android:background="@null"
+                android:hint="请输入评论内容"
                 android:padding="5dp"
-                android:hint="请输入评论内容">
+                android:textSize="18sp" >
             </EditText>
         </TableRow>
     </ScrollView>
@@ -52,13 +54,15 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:background="@drawable/comment_frame"
+        android:orientation="horizontal"
+        android:padding="5dp" >
 
         <ImageView
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:src="@drawable/loc_icon" />
+            android:src="@drawable/loc_icon" 
+            android:layout_gravity="center_vertical"/>
 
         <TextView
             android:id="@+id/add_comment_area"
@@ -72,6 +76,7 @@
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/loc_icon" />
 
         <TextView
@@ -83,12 +88,16 @@
             android:textColor="@color/gray" />
     </LinearLayout>
 
-
-
     <Button
         android:id="@+id/submit_comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="提交" />
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="10dp"
+        android:background="@drawable/comment_frame"
+        android:text="发表评论" 
+        android:textColor="@color/title"/>
 
 </LinearLayout>

@@ -76,8 +76,6 @@ public class MallFragment extends Fragment implements OnClickListener {
 	private ArrayAdapter city_spinner_adapter;
 	private ArrayAdapter sort_spinner_adapter;
 
-//	private String path;
-	private Bitmap temp = null;
 
 	private int MAX_SIZES = 500;
 
@@ -352,7 +350,7 @@ public class MallFragment extends Fragment implements OnClickListener {
 			if (resultCode == -1){
 				String comment = data.getStringExtra("makeCommentText");
 				String photoUrl = data.getStringExtra("commentPath");
-				temp = data.getParcelableExtra("commentBitmap");
+				//temp = data.getParcelableExtra("commentBitmap");
 				System.out.println("comment = "+ comment);
 				System.out.println("photoUrl = "+photoUrl);
 				DynamicModel commentmodel = new DynamicModel();
@@ -467,7 +465,7 @@ public class MallFragment extends Fragment implements OnClickListener {
 			if(items.get(position).getPhotoUrl().contains("storage")){
 				Bitmap bit = BitmapFactory.decodeFile(items.get(position).getPhotoUrl());
 				holder.image.setImageBitmap(bit);
-				System.out.println("temp.toString() = " +temp.toString());
+
 			}else{
 				holder.image.setImageResource(Integer.parseInt(items.get(position).getPhotoUrl()));
 			}
