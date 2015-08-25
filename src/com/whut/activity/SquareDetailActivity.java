@@ -1,11 +1,19 @@
 package com.whut.activity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+
+
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,13 +28,22 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.whut.config.Constants;
 import com.whut.customer.R;
+import com.whut.data.model.CommentModel;
 import com.whut.data.model.DynamicModel;
+import com.whut.data.model.GoodsModel;
+import com.whut.util.JsonUtils;
+import com.whut.util.WebHelper;
 
 public class SquareDetailActivity extends Activity implements OnClickListener {
 
-	private List list;
+
 	private ListView listview;
 	private LayoutInflater inflater;
 	private SquareCommentAdapter adapter;
@@ -44,6 +61,10 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 	private ImageView good_icon;
 	private TextView good_num;
 	private TextView comment_num;
+	private List<CommentModel> commentList;
+
+	private CommentModel myComment ;
+	private CommentAsyncTask commentAsyncTask;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +88,17 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 	private void initData() {
 		// TODO Auto-generated method stub
 		dynamic = (DynamicModel) getIntent().getSerializableExtra("dynamic");
-		list = new ArrayList();
-		
-		list.add("很好，下次还会来");
-		list.add("好评！！！");
-		list.add("GOOD！！");
+		commentList = new ArrayList<CommentModel>();
+//		CommentModel comment = new CommentModel("1","1","1",R.drawable.user_pic4,"我也去过了，味道特别棒！！很喜欢","2015年8月25日","jiang");
+//		commentList.add(comment);
+//		CommentModel comment1 = new CommentModel("1","1","1",R.drawable.user_pic1,"我也去过了，hahahahah！很喜欢","2015年8月25日","jiang");
+//		commentList.add(comment1);
+		commentAsyncTask = new CommentAsyncTask();
+//		list = new ArrayList();
+//		
+//		list.add("很好，下次还会来");
+//		list.add("好评！！！");
+//		list.add("GOOD！！");
 	}
 
 	@Override
@@ -132,7 +159,18 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 							String txt = ((EditText) view
 									.findViewById(R.id.square_comment_edit))
 									.getText().toString();
-							list.add(txt);
+							myComment = new CommentModel();
+							myComment.setcId("3");
+							myComment.setComment(txt);
+							SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
+							String data = sDateFormat.format(new java.util.Date());
+							myComment.setData(data);
+							myComment.setdId(dynamic.getdId());
+							myComment.setuId(dynamic.getuId());
+							myComment.setuName("jiangshan");
+							myComment.setuPic(R.drawable.user_pic7);
+							commentList.add(myComment);
+//							list.add(txt);
 							adapter.notifyDataSetChanged();
 							listview.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 							dismiss();
@@ -152,24 +190,32 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 			update();
 		}
 	}
+	
+	
+
+	
 
 	class SquareCommentAdapter extends BaseAdapter {
 		private HolderView holder;
 
 		class HolderView {
-			TextView comment_tv;
+//			TextView comment_tv;
+			ImageView comment_user_pic ;
+			TextView comment_user_name ;
+			TextView comment_content ;
+			TextView comment_data ; 
 		}
 
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return list.size() + 1;
+			return commentList.size() + 1;
 		}
 
 		@Override
 		public Object getItem(int position) {
 			// TODO Auto-generated method stub
-			return list.get(position);
+			return commentList.get(position);
 		}
 
 		@Override
@@ -182,16 +228,20 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
 			System.out.println("position-------------->" + position);
+
 			if (position == 0) {
 				convertView = inflater.inflate(R.layout.square_listitem, null);
 				initView(convertView);
 			} else {
+				CommentModel comment = commentList.get(position-1);
 				if (convertView == null) {
 					holder = new HolderView();
 					convertView = inflater.inflate(
 							R.layout.square_comment_item, null);
-					holder.comment_tv = (TextView) convertView
-							.findViewById(R.id.square_comment_word);
+					holder.comment_user_pic = (ImageView) convertView.findViewById(R.id.comment_user_pic);
+					holder.comment_user_name = (TextView) convertView.findViewById(R.id.comment_user_name);
+					holder.comment_content = (TextView) convertView.findViewById(R.id.comment_content);
+					holder.comment_data = (TextView) convertView.findViewById(R.id.comment_data);
 					convertView.setTag(holder);
 				} else {
 					holder = (HolderView) convertView.getTag();
@@ -199,12 +249,17 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 						holder = new HolderView();
 						convertView = inflater.inflate(
 								R.layout.square_comment_item, null);
-						holder.comment_tv = (TextView) convertView
-								.findViewById(R.id.square_comment_word);
+						holder.comment_user_pic = (ImageView) convertView.findViewById(R.id.comment_user_pic);
+						holder.comment_user_name = (TextView) convertView.findViewById(R.id.comment_user_name);
+						holder.comment_content = (TextView) convertView.findViewById(R.id.comment_content);
+						holder.comment_data = (TextView) convertView.findViewById(R.id.comment_data);
 						convertView.setTag(holder);
 					}
 				}
-				holder.comment_tv.setText(list.get(position - 1).toString());
+				holder.comment_user_name.setText(comment.getuName());
+				holder.comment_user_pic.setImageResource(comment.getuPic());
+				holder.comment_content.setText(comment.getComment());
+				holder.comment_data.setText(comment.getData());
 			}
 			return convertView;
 		}
@@ -234,5 +289,102 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 			visitCount.setText(String.valueOf(dynamic.getVisitCount()));
 			releaseTime.setText(dynamic.getReleaseTime());
 		}
+	}
+	
+	class CommentAsyncTask extends AsyncTask<Void, Void, String>{
+
+		@Override
+		protected String doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			String result = "";
+			String url = Constants.GET_GOODS_LIST;
+			System.out.println(url);
+			List<NameValuePair> list = new ArrayList<NameValuePair>();
+			list.add(new BasicNameValuePair("sId", "1"));
+			try {
+				result = WebHelper.getJsonString(url, list);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return result;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			String json = "[{'cId':'1','dId':'1','uPic':'R.drawable.user_pic3','comment':'好好吃哟！','data':'2012年7月3日','umane':'jiang'},{'cId':'1','dId':'1','uPic':'R.drawable.user_pic3','comment':'好好吃哟！','data':'2012年7月3日','umane':'jiang'}]";
+			JSONArray jsonArray = JSONArray.parseArray(json);
+			List<CommentModel> commentlist = new ArrayList<CommentModel>();
+			for(int i=0;i<jsonArray.size();i++){
+				JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+				CommentModel comments = JSON.toJavaObject(jsonObject, CommentModel.class);
+				commentlist.add(comments);
+			}
+			adapter.notifyDataSetChanged();
+//			if (JsonUtils.isGoodJson(result)) {
+//				JSONObject json = JSONObject.parseObject(result);
+//				JSONArray jsons = json.getJSONArray("content");
+//				CommentModel commentModel;
+//				for(int i=0;i<2;i++){
+//					commentModel = new CommentModel();
+//					JSONObject item = jsons.getJSONObject(i);
+//					
+//				}
+//				int code = json.getIntValue("code");
+//				String msg = json.getString("msg");
+//				if (code == 1) {
+//					JSONArray jsons = json.getJSONArray("data");
+//					System.out.println(jsons);
+//					GoodsModel goods;
+//					for (int i = 0; i < jsons.size(); i++) {
+//						goods = new GoodsModel();
+//						JSONObject item = jsons.getJSONObject(i);
+//						String title = item.getString("title");
+//						String desc = item.getString("desc");
+//						String img_url = item.getString("thumbnailUrl")
+//								.replace("\\", "");
+//						System.out.println(img_url);
+//						String gid = item.getString("gId");
+//						int purchase_count = item.getIntValue("purchaseCount");
+//						String originalPrice = item.getString("originalPrice");
+//						if (originalPrice == null || "".equals(originalPrice)) {
+//							originalPrice = "0";
+//						}
+//						double origin_price = Double.valueOf(originalPrice);
+//						String currentPrice = item.getString("currentPrice");
+//						if (currentPrice == null || "".equals(currentPrice)) {
+//							currentPrice = "0";
+//						}
+//						double current_price = Double.valueOf(currentPrice);
+//
+//						/*
+//						 * String filepath = new DownloadURLFile()
+//						 * .downloadFromUrl(img_url, path);
+//						 * System.out.println(path + "------" + filepath);
+//						 */
+//						goods.setGid(gid);
+//						goods.setDesc(desc);
+//						goods.setThumbnailUrl(img_url);
+//						goods.setOriginPrice(origin_price);
+//						goods.setCurrentPrice(current_price);
+//						goods.setPurchaseCount(purchase_count);
+//						goods.setTitle(title);
+////						items.add(goods);
+////						listAdapter.notifyDataSetChanged();
+//					}
+//				} else {
+//					Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+//				}
+//			} else {
+//				Toast.makeText(context, "请检查网络goods", Toast.LENGTH_SHORT)
+//						.show();
+//			}
+//		}
+		
+	}
+
+
 	}
 }
