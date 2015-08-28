@@ -18,6 +18,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -189,6 +190,7 @@ public class PlaceActivity extends Activity implements OnClickListener {
 			// http://202.114.175.253:80/ECheckServer/login/load.do?username=zym&password=12345
 			try {
 				result = WebHelper.getJsonString(url, list);
+				Log.i("test", "result="+result);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -311,6 +313,7 @@ public class PlaceActivity extends Activity implements OnClickListener {
 			// http://202.114.175.253:80/ECheckServer/login/load.do?username=zym&password=12345
 			try {
 				result = WebHelper.getJsonString(url, list);
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

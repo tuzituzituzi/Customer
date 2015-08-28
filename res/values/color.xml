@@ -338,5 +338,8 @@
     <color name="title">#ff9a00</color>
     <color name="coupon_bg">#f39200</color>
     <color name="isFocus_bg">#9e9e9e</color>
+    
+    <color name="bg_color">#ff9a00</color>
+    <color name="frame_color">#ADADAD</color>
 
 </resources>

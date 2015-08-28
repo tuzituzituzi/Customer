@@ -94,6 +94,7 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 //		CommentModel comment1 = new CommentModel("1","1","1",R.drawable.user_pic1,"我也去过了，hahahahah！很喜欢","2015年8月25日","jiang");
 //		commentList.add(comment1);
 		commentAsyncTask = new CommentAsyncTask();
+		commentAsyncTask.execute();
 //		list = new ArrayList();
 //		
 //		list.add("很好，下次还会来");
@@ -170,7 +171,7 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 							myComment.setuName("jiangshan");
 							myComment.setuPic(R.drawable.user_pic7);
 							commentList.add(myComment);
-//							list.add(txt);
+							System.out.println("2、commentList.size() = "+commentList.size());
 							adapter.notifyDataSetChanged();
 							listview.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 							dismiss();
@@ -314,74 +315,37 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			String json = "[{'cId':'1','dId':'1','uPic':'R.drawable.user_pic3','comment':'好好吃哟！','data':'2012年7月3日','umane':'jiang'},{'cId':'1','dId':'1','uPic':'R.drawable.user_pic3','comment':'好好吃哟！','data':'2012年7月3日','umane':'jiang'}]";
+			String json = "[{'cId':'1','dId':'1','uId':'3','uPic':'"+String.valueOf(R.drawable.user_pic3)+"','comment':'我也去过了，味道特别棒！！很喜欢','data':'2012年7月3日','uName':'jiang'},{'cId':'1','dId':'1','uId':'3','uPic':'"+String.valueOf(R.drawable.user_pic6)+"','comment':'好好吃哟！','data':'2012年7月3日','uName':'jiang'}]";
 			JSONArray jsonArray = JSONArray.parseArray(json);
-			List<CommentModel> commentlist = new ArrayList<CommentModel>();
+			
+			System.out.println("jsonArray = "+jsonArray );
+			System.out.println("jsonArray.size() = "+jsonArray.size());
 			for(int i=0;i<jsonArray.size();i++){
 				JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-				CommentModel comments = JSON.toJavaObject(jsonObject, CommentModel.class);
-				commentlist.add(comments);
+				String cid = jsonObject.getString("cId");
+				String did = jsonObject.getString("dId");
+				String uid = jsonObject.getString("uId");
+				int upic = jsonObject.getIntValue("uPic");
+				String comment = jsonObject.getString("comment");
+				String data = jsonObject.getString("data");
+				String uname = jsonObject.getString("uName");
+				System.out.println("cid = "+cid + "upic = "+upic);
+				CommentModel comments = new CommentModel();
+				comments.setcId(cid);
+				comments.setdId(did);
+				comments.setuId(uid);
+				comments.setData(data);
+				comments.setuName(uname);
+//				comments.setuPic(R.drawable.user_pic6);
+				comments.setuPic(upic);
+				comments.setComment(comment);
+//				CommentModel comments = JSON.toJavaObject(jsonObject, CommentModel.class);
+				
+				commentList.add(comments);
 			}
+			System.out.println("commentlist.size() ="+commentList.size() );
 			adapter.notifyDataSetChanged();
-//			if (JsonUtils.isGoodJson(result)) {
-//				JSONObject json = JSONObject.parseObject(result);
-//				JSONArray jsons = json.getJSONArray("content");
-//				CommentModel commentModel;
-//				for(int i=0;i<2;i++){
-//					commentModel = new CommentModel();
-//					JSONObject item = jsons.getJSONObject(i);
-//					
-//				}
-//				int code = json.getIntValue("code");
-//				String msg = json.getString("msg");
-//				if (code == 1) {
-//					JSONArray jsons = json.getJSONArray("data");
-//					System.out.println(jsons);
-//					GoodsModel goods;
-//					for (int i = 0; i < jsons.size(); i++) {
-//						goods = new GoodsModel();
-//						JSONObject item = jsons.getJSONObject(i);
-//						String title = item.getString("title");
-//						String desc = item.getString("desc");
-//						String img_url = item.getString("thumbnailUrl")
-//								.replace("\\", "");
-//						System.out.println(img_url);
-//						String gid = item.getString("gId");
-//						int purchase_count = item.getIntValue("purchaseCount");
-//						String originalPrice = item.getString("originalPrice");
-//						if (originalPrice == null || "".equals(originalPrice)) {
-//							originalPrice = "0";
-//						}
-//						double origin_price = Double.valueOf(originalPrice);
-//						String currentPrice = item.getString("currentPrice");
-//						if (currentPrice == null || "".equals(currentPrice)) {
-//							currentPrice = "0";
-//						}
-//						double current_price = Double.valueOf(currentPrice);
-//
-//						/*
-//						 * String filepath = new DownloadURLFile()
-//						 * .downloadFromUrl(img_url, path);
-//						 * System.out.println(path + "------" + filepath);
-//						 */
-//						goods.setGid(gid);
-//						goods.setDesc(desc);
-//						goods.setThumbnailUrl(img_url);
-//						goods.setOriginPrice(origin_price);
-//						goods.setCurrentPrice(current_price);
-//						goods.setPurchaseCount(purchase_count);
-//						goods.setTitle(title);
-////						items.add(goods);
-////						listAdapter.notifyDataSetChanged();
-//					}
-//				} else {
-//					Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-//				}
-//			} else {
-//				Toast.makeText(context, "请检查网络goods", Toast.LENGTH_SHORT)
-//						.show();
-//			}
-//		}
+//			
 		
 	}
 

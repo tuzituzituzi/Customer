@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.whut.activity.AboutActivity;
 import com.whut.activity.CouponActivity;
+import com.whut.activity.LoginActivity;
 import com.whut.activity.WaveActivity;
 import com.whut.activity.map.ShowMap;
 import com.whut.customer.R;
@@ -92,7 +93,8 @@ public class MineFragment extends Fragment implements OnClickListener {
 			switchchange(v);
 			break;
 		case R.id.login_layout:
-
+			tempIntent = new Intent(context,LoginActivity.class);
+			startActivity(tempIntent);
 			break;
 		case R.id.wave_layout:
 			tempIntent = new Intent(context, WaveActivity.class);
@@ -129,14 +131,22 @@ public class MineFragment extends Fragment implements OnClickListener {
 		}
 	}
 
+	//http://blog.csdn.net/wwj_748/article/details/42737607
 	private void clearCache() {
-		File file = new File(context.getFilesDir().getPath()
-				+ context.getPackageName() + "/databases");
-		long before_size = file.getFreeSpace();
-		DataCleanManager.cleanInternalCache(context);
-		long after_size = file.getFreeSpace();
-		Toast.makeText(context, "已清除缓存" + (before_size - after_size),
-				Toast.LENGTH_SHORT).show();
+		File file = new File(context.getExternalCacheDir().getPath());
+		System.out.println("file.toString() "+ file.toString());
+		String cacheSize;
+		try {
+			cacheSize = DataCleanManager.getCacheSize(file);
+			DataCleanManager.cleanExternalCache(context);
+			Toast.makeText(context, "已清除缓存" + cacheSize,
+					Toast.LENGTH_SHORT).show();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("exception");
+			e.printStackTrace();
+		}
+		
 	}
 
 	private void switchchange(View v) {

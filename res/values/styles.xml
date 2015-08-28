@@ -42,4 +42,7 @@
         <item name="android:layout_height">40dp</item>
     </style>
 
+     <style name="MyCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item  name="android:button">@drawable/login_checkbox</item>   
+    </style>
 </resources>
