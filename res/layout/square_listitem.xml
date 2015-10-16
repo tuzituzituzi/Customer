@@ -20,7 +20,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:minHeight="150dp"
-                android:src="@drawable/c" />
+                android:src="@drawable/c" 
+                android:clickable="true"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -37,7 +38,8 @@
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/hotel_icon" />
+                android:src="@drawable/hotel_icon"
+                android:clickable="true" />
 
             <TextView
                 android:id="@+id/square_user_name"
@@ -70,7 +72,8 @@
                         android:onClick="onClick"
                         android:scaleType="fitXY"
                         android:src="@drawable/good_icon"
-                        android:tag="0" />
+                        android:tag="0" 
+                        android:clickable="true"/>
 
                     <TextView
                         android:id="@+id/square_good_count"

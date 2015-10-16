@@ -33,12 +33,16 @@ import com.whut.customer.R.layout;
 import com.whut.data.model.GoodsModel;
 import com.whut.data.model.ShopModel;
 import com.whut.util.JsonUtils;
+import com.whut.util.PullToRefreshListView;
 import com.whut.util.WebHelper;
+import com.whut.util.PullToRefreshBase.OnLastItemVisibleListener;
+import com.whut.util.PullToRefreshBase.OnRefreshListener;
 
 public class StoreListActivity extends Activity implements OnClickListener {
 
 	private List<ShopModel> list;
 	private ListView listview;
+	private PullToRefreshListView refreshListview;
 	private LayoutInflater inflater;
 	private StoreListAdapter adapter;
 	private Context context;
@@ -71,9 +75,37 @@ public class StoreListActivity extends Activity implements OnClickListener {
 		context = this;
 		inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		listview = (ListView) findViewById(R.id.Store_ListView);
+//		listview =(ListView) findViewById(R.id.Store_ListView);
+		refreshListview = (PullToRefreshListView) findViewById(R.id.Store_ListView);
+		initRefreshListView();
+		listview = refreshListview.getRefreshableView();
 		adapter = new StoreListAdapter();
 		listview.setAdapter(adapter);
+	}
+
+	private void initRefreshListView() {
+		// TODO Auto-generated method stub
+
+		refreshListview.setOnRefreshListener(new OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				// TODO Auto-generated method stub
+				// 下拉刷新
+				Toast.makeText(context, "下拉刷新", Toast.LENGTH_SHORT).show();
+				refreshListview.onRefreshComplete();
+			}
+		});
+
+		refreshListview
+				.setOnLastItemVisibleListener(new OnLastItemVisibleListener() {
+					@Override
+					public void onLastItemVisible() {
+						// TODO Auto-generated method stub
+						// 上拉刷新
+						Toast.makeText(context, "上拉刷新", Toast.LENGTH_SHORT)
+								.show();
+					}
+				});
 	}
 
 	private void initData() {

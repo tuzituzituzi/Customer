@@ -1,7 +1,8 @@
 package com.whut.config;
 
 public class Constants {
-	public static final String ROOT_HTTP = "http://115.28.9.186:8899/store/service/201/node-tair-web";
+//	public static final String ROOT_HTTP = "http://115.28.9.186:8899/store/service/201/node-tair-web";
+	public static final String ROOT_HTTP = "http://219.153.20.141:8899/store/service/201/node-tair-web";
 	public static final String GET_ADS_WALL = ROOT_HTTP + "/app/mall/AdsWall";// /app/mall/AdsWall
 	public static final String GET_GOODS_LIST = ROOT_HTTP
 			+ "/app/mall/GoodsList";// /app/mall/GoodsList

@@ -115,6 +115,7 @@ public class AdsWebviewActivity extends Activity implements OnClickListener {
 					Toast.makeText(context, "testObjcCallback called:" + data,
 							Toast.LENGTH_LONG).show();
 					callback.callback("Response from testObjcCallback!");
+					
 				}
 			});
 

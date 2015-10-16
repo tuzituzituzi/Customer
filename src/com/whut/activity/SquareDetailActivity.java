@@ -7,11 +7,15 @@ import java.util.List;
 
 
 
+
+
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -116,6 +120,7 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 		case R.id.square_good_img:
 			swichGoodIcon(v);
 			break;
+		
 		}
 	}
 
@@ -234,7 +239,7 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 				convertView = inflater.inflate(R.layout.square_listitem, null);
 				initView(convertView);
 			} else {
-				CommentModel comment = commentList.get(position-1);
+				final CommentModel comment = commentList.get(position-1);
 				if (convertView == null) {
 					holder = new HolderView();
 					convertView = inflater.inflate(
@@ -261,6 +266,20 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 				holder.comment_user_pic.setImageResource(comment.getuPic());
 				holder.comment_content.setText(comment.getComment());
 				holder.comment_data.setText(comment.getData());
+				
+				
+				holder.comment_user_pic.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						Intent i = new Intent(SquareDetailActivity.this,UserInfoActivity.class);
+						i.putExtra("pic", comment.getuPic());
+						i.putExtra("name", comment.getuName());
+						startActivity(i);
+						
+					}
+				});
 			}
 			return convertView;
 		}
@@ -289,6 +308,20 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 			desc.setText(dynamic.getDesc());
 			visitCount.setText(String.valueOf(dynamic.getVisitCount()));
 			releaseTime.setText(dynamic.getReleaseTime());
+			
+			
+			uPic.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent i = new Intent(context,UserInfoActivity.class);
+					i.putExtra("name", dynamic.getuName());
+					i.putExtra("pic", Integer.parseInt(dynamic.getuPicUrl()));
+					startActivity(i);
+				}
+			});
+			
 		}
 	}
 	

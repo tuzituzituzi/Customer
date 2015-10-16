@@ -13,6 +13,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,6 +31,8 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class MarketFragment extends Fragment {
+
+
 	private Context context;
 	private ListView listview;
 	private List<String> list;
@@ -92,6 +96,8 @@ public class MarketFragment extends Fragment {
 			ImageView image;
 		}
 
+	
+		
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
@@ -121,13 +127,46 @@ public class MarketFragment extends Fragment {
 				holder.image = (ImageView) convertView
 						.findViewById(R.id.market_item_img);
 				convertView.setTag(holder);
-			} else
+			} else{
 				holder = (HolderView) convertView.getTag();
+			}
 			holder.square_name.setText(list.get(position));
 			holder.image.setImageResource(data[position]);
+//			holder.image.setBackgroundResource(data[position]);
+//			LoadImage(holder.image,position);
 
 			return convertView;
 		}
+
+//		private void LoadImage(ImageView image, int position) {
+//			// TODO Auto-generated method stub
+//			ImageAsyncTask imageAsync = new ImageAsyncTask(image);
+//			imageAsync.execute(position);
+//		}
+
+	
+
+	}
+	
+	public class ImageAsyncTask extends AsyncTask<Integer, Integer, Bitmap>{
+		
+		private ImageView imageView;
+
+		public ImageAsyncTask(ImageView image) {
+			// TODO Auto-generated constructor stub
+			this.imageView = image;
+		}
+
+		@Override
+		protected Bitmap doInBackground(Integer... params) {
+			// TODO Auto-generated method stub
+			
+			return null;
+		}
+
+		
+
+	
 
 	}
 }

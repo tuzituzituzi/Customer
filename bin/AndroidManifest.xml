@@ -157,6 +157,8 @@
         
         <activity android:name="com.whut.activity.AddCommentActivity"></activity>
         <activity android:name="com.whut.activity.LoginActivity"></activity>
+        <activity android:name="com.whut.activity.UserInfoActivity"></activity>
+        
         <service android:name="com.whut.service.WaveService" >
         </service>
     </application>

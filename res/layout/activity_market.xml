@@ -7,7 +7,7 @@
     <include layout="@layout/square_title" />
     <ListView 
     android:id="@+id/Square_ListView"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:clickable="true"
     android:divider="#606569"

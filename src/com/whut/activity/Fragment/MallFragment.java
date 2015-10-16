@@ -26,10 +26,13 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -48,16 +51,21 @@ import android.widget.Toast;
 import com.whut.activity.AddCommentActivity;
 import com.whut.activity.FocusListActivity;
 import com.whut.activity.SquareDetailActivity;
+import com.whut.activity.UserInfoActivity;
 import com.whut.activity.map.ShowMap;
 import com.whut.customer.R;
 import com.whut.data.model.DynamicModel;
 import com.whut.util.FileUtils;
+import com.whut.util.PullToRefreshListView;
 import com.whut.util.SelectImage;
+import com.whut.util.PullToRefreshBase.OnLastItemVisibleListener;
+import com.whut.util.PullToRefreshBase.OnRefreshListener;
 
 public class MallFragment extends Fragment implements OnClickListener {
 
 	private Context context;
 	private ListView listview;
+	private PullToRefreshListView pulllistview;
 	private List<DynamicModel> items;
 	private MainListAdapter listAdapter;
 	private LayoutInflater inflater;
@@ -91,7 +99,10 @@ public class MallFragment extends Fragment implements OnClickListener {
 	private void initView() {
 		// TODO Auto-generated method stub
 		// 将可选内容与ArrayAdapter连接起来
-		listview = (ListView) view.findViewById(R.id.Store_ListView);
+		
+		pulllistview =  (PullToRefreshListView) view.findViewById(R.id.Store_ListView);
+		initRefreshListView();
+		listview = pulllistview.getRefreshableView();
 		all_spinner = (Spinner) view.findViewById(R.id.all_spinner);
 		city_spinner = (Spinner) view.findViewById(R.id.city_spinner);
 		sort_spinner = (Spinner) view.findViewById(R.id.sort_spinner);
@@ -162,6 +173,31 @@ public class MallFragment extends Fragment implements OnClickListener {
 	}
 
 	
+
+	private void initRefreshListView() {
+		// TODO Auto-generated method stub
+
+		pulllistview.setOnRefreshListener(new OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				// TODO Auto-generated method stub
+				// 下拉刷新
+				Toast.makeText(context, "下拉刷新", Toast.LENGTH_SHORT).show();
+				pulllistview.onRefreshComplete();
+			}
+		});
+
+		pulllistview
+				.setOnLastItemVisibleListener(new OnLastItemVisibleListener() {
+					@Override
+					public void onLastItemVisible() {
+						// TODO Auto-generated method stub
+						// 上拉刷新
+						Toast.makeText(context, "上拉刷新", Toast.LENGTH_SHORT)
+								.show();
+					}
+				});
+	}
 
 	private void enterStoreDetail() {
 		// TODO Auto-generated method stub
@@ -330,6 +366,7 @@ public class MallFragment extends Fragment implements OnClickListener {
 			TextView release_time;
 			ImageView image;
 			ImageView uPic;
+			ImageView like_image;
 		}
 
 		@Override
@@ -351,9 +388,9 @@ public class MallFragment extends Fragment implements OnClickListener {
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getView(final int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
-			HolderView holder;
+			final HolderView holder;
 			if (convertView == null) {
 				holder = new HolderView();
 				convertView = inflater.inflate(R.layout.square_listitem, null);
@@ -377,6 +414,7 @@ public class MallFragment extends Fragment implements OnClickListener {
 						.findViewById(R.id.square_msg_visit_count);
 				holder.release_time = (TextView) convertView
 						.findViewById(R.id.square_msg_posttime);
+				holder.like_image = (ImageView) convertView.findViewById(R.id.square_good_img);
 				convertView.setTag(holder);
 			} else {
 				holder = (HolderView) convertView.getTag();
@@ -410,10 +448,94 @@ public class MallFragment extends Fragment implements OnClickListener {
 			holder.visit_count.setText(String.valueOf(items.get(position)
 					.getVisitCount()));
 			holder.release_time.setText(items.get(position).getReleaseTime());
+			
+			holder.uPic.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent i = new Intent(context,UserInfoActivity.class);
+					i.putExtra("name", items.get(position).getuName());
+					i.putExtra("pic", Integer.parseInt(items.get(position).getuPicUrl()));
+					startActivity(i);
+				}
+			});
+			
+			holder.like_image.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					swichGoodIcon(v);
+				}
+
+				private void swichGoodIcon(View v) {
+					// TODO Auto-generated method stub
+					ImageView view = (ImageView) v;
+					int num = Integer.parseInt(holder.like_count.getText().toString());
+					if ("0".equals(view.getTag())) {
+						view.setImageResource(R.drawable.gooded_icon);
+						view.setTag("1");
+						num++;
+						holder.like_count.setText(String.valueOf(num));
+					} else {
+						view.setImageResource(R.drawable.good_icon);
+						view.setTag("0");
+						num--;
+						holder.like_count.setText(String.valueOf(num));
+					}
+				}
+
+				
+			});
+			
+			
+			holder.image.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					showPopupWindow(v,Integer.parseInt(items.get(position).getPhotoUrl()));
+				}
+			});
+			
 			return convertView;
+		}
+
+		protected void showPopupWindow(View v,int ImageId) {
+			// TODO Auto-generated method stub
+			View contentView = LayoutInflater.from(context).inflate(R.layout.mypopwindow, null);
+			final PopupWindow popupWindow = new PopupWindow(contentView,LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT,true);
+			popupWindow.setBackgroundDrawable(getResources().getDrawable(ImageId));
+			backgroundAlpha(0.3f);
+			
+			popupWindow.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
+			
+			popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+				
+				@Override
+				public void onDismiss() {
+					// TODO Auto-generated method stub
+					backgroundAlpha(1f);
+				}
+			});
+	
+			
+		}
+
+		protected void backgroundAlpha(float f) {
+			// TODO Auto-generated method stub
+			//设置其它的亮度
+			WindowManager.LayoutParams params = getActivity().getWindow().getAttributes();
+			params.alpha = f;
+			getActivity().getWindow().setAttributes(params);
+			
+			
 		}
 	}
 
+	
+	
+	
 	public void saveBitmap(String picName, Bitmap bit) {
 		File f = new File(picName);
 		if (f.exists()) {
