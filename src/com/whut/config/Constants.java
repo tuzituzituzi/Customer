@@ -25,4 +25,15 @@ public class Constants {
 	public static final String CANNOT_RETURN_OVERDATE = "不支持过期退款";
 	public static final String CAN_RETURN_ANYTIME = "支持随时退款";
 	public static final String CANNOT_RETURN_ANYTIME = "不支持随时退款";
+	
+	public static final String WECHAT_APP_ID = "wx6af2672f4087d7a5";
+	public static final String QQ_APP_ID = "1104800417";
+	public static final String WEIBO_APP_ID = "4216745425";
+	
+	public static final String REDIRECT_URL = "http://www.sina.com";
+	public static final String SCOPE = 							   
+            "email,direct_messages_read,direct_messages_write,"
+            + "friendships_groups_read,friendships_groups_write,statuses_to_me_read,"
+            + "follow_app_official_microblog," + "invitation_write";
+
 }

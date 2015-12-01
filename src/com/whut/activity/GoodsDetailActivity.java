@@ -135,7 +135,16 @@ public class GoodsDetailActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		finish();
+		switch (v.getId()) {
+		case R.id.share_but:
+			
+			break;
+
+		default:
+			finish();
+		}
+		
+		
 	}
 
 }
