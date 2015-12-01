@@ -348,7 +348,9 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
+
 			String json = "[{'cId':'1','dId':'1','uId':'3','uPic':'"+String.valueOf(R.drawable.user_pic3)+"','comment':'我也去过了，味道特别棒！！很喜欢','data':'2012年7月3日','uName':'jiang'},{'cId':'1','dId':'1','uId':'3','uPic':'"+String.valueOf(R.drawable.user_pic6)+"','comment':'好好吃哟！','data':'2012年7月3日','uName':'jiang'}]";
+
 			JSONArray jsonArray = JSONArray.parseArray(json);
 			
 			System.out.println("jsonArray = "+jsonArray );
@@ -358,11 +360,12 @@ public class SquareDetailActivity extends Activity implements OnClickListener {
 				String cid = jsonObject.getString("cId");
 				String did = jsonObject.getString("dId");
 				String uid = jsonObject.getString("uId");
+
 				int upic = jsonObject.getIntValue("uPic");
 				String comment = jsonObject.getString("comment");
 				String data = jsonObject.getString("data");
 				String uname = jsonObject.getString("uName");
-				System.out.println("cid = "+cid + "upic = "+upic);
+//				System.out.println("cid = "+cid + "upic = "+upic);
 				CommentModel comments = new CommentModel();
 				comments.setcId(cid);
 				comments.setdId(did);

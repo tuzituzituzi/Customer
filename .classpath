@@ -5,18 +5,18 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry exported="true" kind="lib" path="E:/ADT/ADT/workspace1/Customer01/libs/AndroidBucket.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/ADT/ADT/workspace1/Customer01/libs/android-support-v4.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/ADT/ADT/workspace1/Customer01/libs/BaiduLBS_Android.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/ADT/ADT/workspace1/Customer01/libs/commons-io-1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/ADT/ADT/workspace1/Customer01/libs/core-2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/ADT/ADT/workspace1/Customer01/libs/fastjson-1.0.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/ADT/ADT/workspace1/Customer01/libs/MobTools.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/ADT/ADT/workspace1/Customer01/libs/pgyer_sdk_2.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/ADT/ADT/workspace1/Customer01/libs/ShareSDK-QQ-2.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/ADT/ADT/workspace1/Customer01/libs/ShareSDK-SinaWeibo-2.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/ADT/ADT/workspace1/Customer01/libs/ShareSDK-Wechat-Core-2.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/ADT/ADT/workspace1/Customer01/libs/universal-image-loader-1.9.2-SNAPSHOT-with-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="E:/ADT/ADT/workspace1/Customer02/libs/ShareSDK-Core-2.6.0.jar"/>
-	<classpathentry kind="lib" path="libs/android-support-v4.jar"/>
-	<classpathentry kind="lib" path="libs/AndroidBucket.jar"/>
-	<classpathentry kind="lib" path="libs/BaiduLBS_Android.jar"/>
-	<classpathentry kind="lib" path="libs/commons-io-1.4.jar"/>
-	<classpathentry kind="lib" path="libs/core-2.2.jar"/>
-	<classpathentry kind="lib" path="libs/fastjson-1.0.4.jar"/>
-	<classpathentry kind="lib" path="libs/MobTools.jar"/>
-	<classpathentry kind="lib" path="libs/pgyer_sdk_2.1.2.jar"/>
-	<classpathentry kind="lib" path="libs/ShareSDK-QQ-2.6.0.jar"/>
-	<classpathentry kind="lib" path="libs/ShareSDK-SinaWeibo-2.6.0.jar"/>
-	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-Core-2.6.0.jar"/>
-	<classpathentry kind="lib" path="libs/universal-image-loader-1.9.2-SNAPSHOT-with-sources.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
